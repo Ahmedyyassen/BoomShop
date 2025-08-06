@@ -16,8 +16,8 @@ import PasswordPage from "./pages/Profile/PasswordPage";
 import useAuth from "./hooks/useAuth";
 
 function App() {
-  const {authUser, isLoading, error} = useAuth();
-    if (isLoading || error) return null;
+  const {authUser} = useAuth();
+    // if (isLoading || error) return null;
     const router = createBrowserRouter(
       createRoutesFromElements(
         <>
