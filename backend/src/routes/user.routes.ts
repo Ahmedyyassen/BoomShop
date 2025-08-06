@@ -1,6 +1,6 @@
 import { Router } from "express";
 import protectedRoute from "../middleware/auth.middleware";
-import { getUserById, getUserUsername, syncUser, updateProfile } from "../controller/user.controller";
+import { changePassword, getUserById, getUserUsername, syncUser, updateProfile } from "../controller/user.controller";
 import upload from "../utils/upload";
 
 
@@ -10,5 +10,6 @@ export default (router: Router) => {
     router.route("/users/:id").get(getUserById);
     router.route("/users/username/:username").get(getUserUsername);
 
-    router.route("/users/profile").put(upload.single("image"), updateProfile)
+    router.route("/users/profile").put(upload.single("image"), updateProfile);
+    router.route("/users/profile/password").put(changePassword);
 };

@@ -22,13 +22,12 @@ const useLogin = () => {
       onSuccess: () => {
         toast.success("User Login successfully", { position: "top-center" });
         queryClient.invalidateQueries({queryKey: ["authUser"]})
+        navigate(redirectPath, { replace: true });
       },
       onError: (error) => {
         toast.error(error.message, {
           position: "top-center",
         });
-      },onSettled:()=>{
-          navigate(redirectPath, { replace: true });
       }
     });
       const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {

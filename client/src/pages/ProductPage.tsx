@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import { Product } from "../model/productModel";
 import API from "../lib/apiCall";
@@ -76,24 +76,61 @@ const ProductPage = () => {
     }
   }
 
+  // Zoom effect
+  const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
+  const [isZoomed, setIsZoomed] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+const handleMouseMove = (e: React.MouseEvent) => {
+  const { left, top, width, height } = imageRef.current!.getBoundingClientRect();
+  const x = ((e.clientX - left) / width) * 100;
+  const y = ((e.clientY - top) / height) * 100;
+  setZoomPos({ x, y });
+};
+
+const handleMouseEnter = () => setIsZoomed(true);
+const handleMouseLeave = () => setIsZoomed(false);
+
   return (
     <PageTransition>
       <>
-    { !isLoading ?  <div className="container pt-40 mx-auto py-12 flex justify-between items-center">
+    { !isLoading ?  
+    <div className="container pt-60 mx-auto py-12 flex justify-between items-center gap-10">
         <div className="w-[40%]">
-          <div className="flex items-center justify-center">
-            <img src={ mainImg || product?.images[0]} alt={product?.title} />
-          </div>
+          {/* <div onMouseMove={()=> {}} className="flex items-center justify-center w-full relative">
+            <img src={ mainImg || product?.images[0]} alt={product?.title} />            
+          </div> */}
+              <div
+                ref={imageRef}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className="relative w-full h-[600px] overflow-hidden rounded-md cursor-pointer "
+              >
+                <img
+                  src={mainImg || product?.images[0]}
+                  alt={product?.title}
+                  className={`transition-transform duration-300 ease-in-out w-full h-full object-cover ${
+                    isZoomed ? "scale-200" : "scale-100"
+                  }`}
+                  style={{
+                    transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
+                  }}
+                />
+              </div>
+
           <div className="flex justify-center w-2/3 mt-8 mx-auto gap-8 items-center">
-            { product?.images && product.images.length > 1 && product?.images.map((img,i)=>(
-             <div className="w-32"> <img src={img} key={i+img} onClick={()=> setMainImg(img)}  className="h-32 w-auto object-cover cursor-pointer" /></div>
+            { product?.images && product.images.length > 1 
+            && product?.images.map((img)=>(
+             <div className="w-32" key={img} > <img src={img} onClick={()=> setMainImg(img)}  className="h-32 w-auto object-cover cursor-pointer" /></div>
             ))}
           </div>
         </div>
 
         <article className="w-[58%]">
             <h1 className="mb-8 text-main-main text-4xl font-extrabold">{product?.title}</h1>
-            <span className="flex items-center gap-2 my-4" >{Array(4).fill(0).map((_,i)=>(
+            <span className="flex items-center gap-2 my-4" >
+              {Array(4).fill(0).map((_,i)=>(
                <FaStar key={i} className="fill-[#f8d941] text-xl" />
             ))}
             </span>

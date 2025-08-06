@@ -15,9 +15,19 @@ export interface UserDocument extends Document {
   createdAt: Date;
   updatedAt: Date;
   comparePassword(password: string): Promise<boolean>;
+  hashPassword(password: string): Promise<string>;
   generateToken(): string;
   compareToken(token: string): Promise<boolean>;
-  omitPassword(): Pick<UserDocument, "_id" | "firstName" | "lastName" | "username" | "email" | "createdAt" | "updatedAt">;
+  omitPassword(): Pick<
+    UserDocument,
+    | "_id"
+    | "firstName"
+    | "lastName"
+    | "username"
+    | "email"
+    | "createdAt"
+    | "updatedAt"
+  >;
 }
 
 const userSchema = new Schema<UserDocument>(
@@ -56,6 +66,9 @@ userSchema.pre("save", async function (next) {
   this.password = await hashValue(this.password);
   next();
 });
+userSchema.methods.hashPassword = async function (password: string): Promise<string> {
+  return await hashValue(password);
+};
 userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
   return await compareValue(password, this.password);
 };

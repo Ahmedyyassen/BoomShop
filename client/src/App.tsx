@@ -52,6 +52,7 @@ function App() {
             element={authUser ? <ProfileLayout /> : <Navigate to="/" />}
           >
             <Route index element={<AccountPage />} />
+            <Route path="account" element={<AccountPage />} />
             <Route path="password" element={<PasswordPage />} />
           </Route>
               

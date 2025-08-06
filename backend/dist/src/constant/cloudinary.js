@@ -1,0 +1,1 @@
+export const cloudinary_folder_name = "Boom_Shop-images";

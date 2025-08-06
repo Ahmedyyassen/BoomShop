@@ -16,8 +16,6 @@ const useLogout = () => {
             toast.success("Logout success", { position: "top-center" });
             setAuthUser(null);
             queryClient.clear();
-        },
-        onSettled:()=>{
             navigate("/");
         },
         onError: (err)=>{

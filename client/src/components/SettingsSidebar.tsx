@@ -10,21 +10,14 @@ import { FiLoader } from "react-icons/fi";
 const SettingsSidebar = () => {
   const { authUser } = useContext(AuthContext);
   const { logoutMutation, isPending } = useLogout();
-  return (
-    <div className=" min-h-screen bg-sidebarCustom-bg border-r border-border p-6">
-      {/* Profile Section */}
-      <div className="flex items-center justify-center gap-4 mb-8">
-        <Avatar className="size-32 border border-gray-300">
-          <AvatarImage src={authUser?.profilePicture} />
-          <AvatarFallback className="text-lg font-semibold">JD</AvatarFallback>
-        </Avatar>
-      </div>
 
+  return (
+    <div className=" min-h-screen flex flex-col justify-between bg-sidebarCustom-bg border-r border-border p-6 bg-white w-86">
       {/* Navigation */}
-      <nav className="space-y-2">
+      <nav className="space-y-2 mt-8">
         <NavLink
-          to={"/profile"}
-          className={({ isActive }) =>
+          to={"/profile/account"}
+            className={({ isActive }) =>
             `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
               isActive
                 ? "bg-main-main text-main-bg"
@@ -59,13 +52,26 @@ const SettingsSidebar = () => {
           <LogOut className="w-5 h-5" />
           <span className="font-medium">
             {isPending ? (
-              <FiLoader className="animate-spin text-3xl"  />
-            ) : 
-            ( "Logout" )}
+              <FiLoader className="animate-spin text-3xl" />
+            ) : (
+              "Logout"
+            )}
           </span>
         </button>
       </nav>
-      
+      {/* Profile Section */}
+      <div className="flex items-center justify-start gap-4 mb-4 border border-gray-300 bg-gray-100 px-4 py-1 rounded-full">
+        <Avatar className="size-16 border-2 border-gray-400">
+          <AvatarImage src={authUser?.profilePicture} className="object-cover" />
+          <AvatarFallback className="text-lg font-semibold">JD</AvatarFallback>
+        </Avatar>
+        <div className=" text-gray-600 font-semibold leading-4 text-sm">
+          <p>
+            {authUser?.firstName} {authUser?.lastName}
+          </p>
+          <p className="text-gray-500">{authUser?.username}</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -5,12 +5,18 @@ export interface User {
   username: string;
   email: string;
   profilePicture:string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface UPDATEUSER{
   firstName?: string;
   lastName?: string;
   profilePicture?:string;
+}
+
+export interface CHANGEPASSWORD{
+    currentPassword: string;
+    newPassword: string;
+    confirmNewPassword: string;
 }

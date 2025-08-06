@@ -37,8 +37,21 @@ export const profileValidation = (data: ProfileDate) => {
     const schema = Joi.object<ProfileDate>({
         firstName: Joi.string().min(3).max(100).optional(),
         lastName: Joi.string().min(3).max(100).optional(),
-        password: Joi.string().min(6).optional(),
         profilePicture: Joi.string().optional(),
+    });
+    return schema.validate(data);
+};
+
+type PasswordDate ={
+    currentPassword: string;
+    newPassword: string;
+    confirmNewPassword: string;
+}
+export const changePasswordValidation = (data: PasswordDate) => {
+    const schema = Joi.object<PasswordDate>({
+        currentPassword: Joi.string().required().min(6),
+        newPassword: Joi.string().required().min(6),
+        confirmNewPassword: Joi.string().required().min(6).valid(Joi.ref('newPassword'))
     });
     return schema.validate(data);
 };

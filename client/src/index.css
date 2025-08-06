@@ -12,7 +12,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-main-main: #000;
+  --color-main-main: #04afef;
   --color-main-p: #7b7b7b;
   --color-main-bg: #F3F3F3;
   --color-main-heading: #253237;
@@ -41,7 +41,7 @@ img{
     @apply w-10 h-10 rounded-full flex items-center justify-center cursor-pointer bg-main-bg text-main-main border border-main-main hover:bg-main-main hover:text-white transition-all
   }
   .textcolor{
-    @apply text-main-heading dark:text-white
+    @apply text-main-heading dark:text-white 
   }
 }
 .swiper-pagination-bullet-active{

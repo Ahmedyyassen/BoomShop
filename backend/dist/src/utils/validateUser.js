@@ -25,3 +25,11 @@ export const profileValidation = (data) => {
     });
     return schema.validate(data);
 };
+export const changePasswordValidation = (data) => {
+    const schema = Joi.object({
+        currentPassword: Joi.string().required().min(6),
+        newPassword: Joi.string().required().min(6),
+        confirmNewPassword: Joi.string().required().min(6).valid(Joi.ref('newPassword'))
+    });
+    return schema.validate(data);
+};

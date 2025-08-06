@@ -10,7 +10,7 @@ const useProfile = () => {
     const api = useApiClient();
     const queryClient = useQueryClient();
 
-    // const [selectedImage, setSelectedImage] = useState<string| null>(null);
+    const [selectedImage, setSelectedImage] = useState<File| null>(null);
 
     const [updateProfile, setUpdateProfile] = useState<UPDATEUSER>({
       firstName: authUser?.firstName || "",
@@ -22,6 +22,7 @@ const useProfile = () => {
         const formData = new FormData();
         if (data.firstName) formData.append("firstName", data.firstName);
         if (data.lastName) formData.append("lastName", data.lastName);
+        if (selectedImage) formData.append("image", selectedImage);
 
         return await apiUser.updateProfile(api, formData);
         },
@@ -40,17 +41,17 @@ const useProfile = () => {
         }
 
         const saveDate = ()=>{
-            // setSelectedImage(null);
-            mutate(updateProfile);
+          mutate(updateProfile);
         }
-        console.log(updateProfile);
-        
+
   return {
     isUpdating: isPending,
     handleEdit,
     saveDate,
-    updateProfile
-  }
+    updateProfile,
+    setSelectedImage,
+    selectedImage
+  };
 }
 
 export default useProfile

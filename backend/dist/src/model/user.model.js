@@ -31,13 +31,17 @@ const userSchema = new Schema({
     }
 }, { timestamps: true });
 userSchema.pre("save", async function (next) {
-    if (!this.isModified("password"))
+    if (!this.isModified("password")){
         return next();
+    }
     this.password = await hashValue(this.password);
     next();
 });
 userSchema.methods.comparePassword = async function (password) {
     return await compareValue(password, this.password);
+};
+userSchema.methods.hashPassword = async function (password){
+  return await hashValue(password);
 };
 userSchema.methods.omitPassword = function () {
     const user = this.toObject();

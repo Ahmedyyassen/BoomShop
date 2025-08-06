@@ -1,24 +1,29 @@
 import PageTransition from "@/components/PageTransition";
 import useSignUp from "@/hooks/useSignUp";
-import { FormEvent } from "react";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FiLoader } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Register = () => {
   const { signupForm, isLoading, handleChangeInput, saveData } = useSignUp(); 
+  const [showPassword, setshowPassword] = useState({password:false, cPassword:false});
+  
 
-  const handelSubmit = (e:FormEvent)=>{
-    e.preventDefault();
-    saveData();
-  }
   return (
     <PageTransition>
       <section className="flex justify-center items-center h-screen">
         <div className="w-[90%] md:w-[60%] lg:w-[40%] xl:w-[35%] 2xl:w-[25%] px-5 border border-main-border shadow-lg rounded-2xl mx-auto">
-          <h1 className="border-b border-b-main-border text-center py-3 lg:py-5 mb-5 text-main-main text-lg lg:text-2xl font-bold">
-            Create Account
-          </h1>
-          <form onSubmit={handelSubmit}>
+          {/* LOGO */}
+          <div className="border-b border-b-main-border py-3 lg:py-6 mb-5 flex justify-center">
+            <div className="w-36">
+              <Link to={"/"}>
+                <img src="./src/img/icon.png" className="" />
+              </Link>
+            </div>
+          </div>
+
+          <form>
             <div className="flex flex-col gap-y-2 lg:gap-y-4">
               <div className="grid grid-cols-2 gap-x-2 lg:gap-x-4">
                 <input
@@ -28,7 +33,7 @@ const Register = () => {
                   placeholder="First Name"
                   value={signupForm.firstName}
                   onChange={handleChangeInput}
-                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-lg"
+                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
                 />
                 <input
                   type="text"
@@ -37,7 +42,7 @@ const Register = () => {
                   placeholder="Last Name"
                   value={signupForm.lastName}
                   onChange={handleChangeInput}
-                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-lg"
+                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
                 />
               </div>
 
@@ -48,27 +53,61 @@ const Register = () => {
                 placeholder="Email"
                 value={signupForm.email}
                 onChange={handleChangeInput}
-                className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-lg"
+                className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
               />
-
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                value={signupForm.password}
-                onChange={handleChangeInput}
-                className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-lg"
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Confirm Password"
-                value={signupForm.confirmPassword}
-                onChange={handleChangeInput}
-                className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-lg"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword.password ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  value={signupForm.password}
+                  onChange={handleChangeInput}
+                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
+                />
+                {showPassword.password ? (
+                  <FaEye
+                    onClick={() =>
+                      setshowPassword((pre) => ({ ...pre, password: false }))
+                    }
+                    className="absolute top-1/2 -translate-y-1/2 right-6 text-2xl cursor-pointer"
+                  />
+                ) : (
+                  <FaEyeSlash
+                    onClick={() =>
+                      setshowPassword((pre) => ({ ...pre, password: true }))
+                    }
+                    className="absolute top-1/2 -translate-y-1/2 right-6 text-2xl cursor-pointer"
+                  />
+                )}
+              </div>
+              <div className="relative mb-4">
+                <input
+                  type={showPassword.cPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  placeholder="Confirm Password"
+                  value={signupForm.confirmPassword}
+                  onChange={handleChangeInput}
+                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
+                  onKeyDown={(e) => e.key === "Enter" && saveData()}
+                />
+                  {showPassword.cPassword ? (
+                  <FaEye
+                    onClick={() =>
+                      setshowPassword((pre) => ({ ...pre, cPassword: false }))
+                    }
+                    className="absolute top-1/2 -translate-y-1/2 right-6 text-2xl cursor-pointer"
+                  />
+                ) : (
+                  <FaEyeSlash
+                    onClick={() =>
+                      setshowPassword((pre) => ({ ...pre, cPassword: true }))
+                    }
+                    className="absolute top-1/2 -translate-y-1/2 right-6 text-2xl cursor-pointer"
+                  />
+                )}
+              </div>
               {/* <div className="flex items-center gap-x-2 mb-4">
                 <input
                   type="checkbox"
@@ -85,8 +124,9 @@ const Register = () => {
             <div className="border-t border-main-border py-8 ">
               <button
                 disabled={isLoading}
-                type="submit"
-                className="w-full flex justify-center bg-main-main text-white border-2 rounded-lg border-main-border py-4 text-xl cursor-pointer font-bold transition-all hover:bg-transparent hover:text-main-main"
+                type="button"
+                onClick={saveData}
+                className="w-full flex justify-center bg-main-main text-white border-2 rounded-full border-main-border py-4 text-xl cursor-pointer font-bold transition-all hover:bg-transparent hover:text-main-main"
               >
                 {isLoading ? (
                   <FiLoader className="animate-spin text-3xl" />
@@ -102,7 +142,9 @@ const Register = () => {
                 Already have an account?
               </p>
               <Link to="/login">
-                <p className="font-semibold hover:underline">Login</p>
+                <p className="font-semibold hover:underline text-main-main">
+                  Login
+                </p>
               </Link>
             </div>
           </div>

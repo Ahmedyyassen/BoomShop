@@ -99,10 +99,10 @@ const BottomHeader = () => {
           </div>
         ) : (
           <Link to={"/profile"}>
-            <div className="size-12 rounded-full border border-main-border cursor-pointer bg-main-heading">
+            <div className="size-12 rounded-full border-2 border-main-border cursor-pointer bg-main-heading">
               <img
                 src={authUser.profilePicture}
-                className="w-full h-full"
+                className="w-full h-full rounded-full object-cover"
                 title={authUser.username}
                 alt={authUser.username}
               />
