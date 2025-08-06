@@ -52,7 +52,7 @@ const SettingsSidebar = () => {
           <LogOut className="w-5 h-5" />
           <span className="font-medium">
             {isPending ? (
-              <div className="flex items-center justify-center w-full">
+              <div className="flex-1 items-center justify-center">
                 <FiLoader className="animate-spin text-3xl" />
               </div>
             ) : (

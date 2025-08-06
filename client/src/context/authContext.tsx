@@ -6,18 +6,23 @@ import { createContext, useEffect, useState } from "react"
 type AuthContextValue = {
   authUser: User | null;
   setAuthUser: (user: User | null) => void;
+  loading: boolean;
 };
 export const AuthContext = createContext<AuthContextValue>({} as AuthContextValue);
 
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [authUser, setAuthUser] = useState<User | null>(null);
-  const { authUser:user } = useAuth();
+  const [loading, setLoading] = useState(false)
+
+  const { authUser:user, isLoading } = useAuth();
+  
   useEffect(()=>{
+    setLoading(isLoading);
     setAuthUser(user!);
-  }, [user])
+  }, [user,isLoading])
 
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, loading,  }}>
       {children}
     </AuthContext.Provider>
   );
