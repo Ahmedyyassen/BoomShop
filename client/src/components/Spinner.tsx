@@ -1,9 +1,9 @@
-import { LuLoaderCircle } from 'react-icons/lu'
+import { FaSpinner } from "react-icons/fa";
 
 const Spinner = () => {
   return (
     <div className="flex justify-center items-center h-screen w-screen">
-      <LuLoaderCircle size={40} className='animate-spin text-main-main'  />
+      <FaSpinner size={100} className='animate-spin text-main-main'  />
     </div>
   )
 }

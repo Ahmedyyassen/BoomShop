@@ -1,14 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { User, Key, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useContext } from "react";
-import { AuthContext } from "@/context/authContext";
 import useLogout from "@/hooks/useLogout";
 import { FiLoader } from "react-icons/fi";
+import useAuth from "@/hooks/useAuth";
 
 
 const SettingsSidebar = () => {
-  const { authUser } = useContext(AuthContext);
+  const { authUser } = useAuth();
   const { logoutMutation, isPending } = useLogout();
 
   return (

@@ -3,13 +3,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { AuthContext } from '@/context/authContext'
+import useAuth from '@/hooks/useAuth'
 import useProfile from '@/hooks/useProfile'
 import base64 from '@/utils/base64'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const AccountPage = () => {
-  const { authUser } = useContext(AuthContext);
+  const { authUser } = useAuth();
   const { handleEdit, isUpdating, saveDate, updateProfile, setSelectedImage, selectedImage } = useProfile();
 
   const uploadImage = (e: React.ChangeEvent<HTMLInputElement> ) => {
