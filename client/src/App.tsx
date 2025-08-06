@@ -54,7 +54,7 @@ function App() {
             <Route path="account" element={<AccountPage />} />
             <Route path="password" element={<PasswordPage />} />
           </Route>
-              
+          <Route path="*" element={<Navigate to="/" />} />
         </>
       )
     );
