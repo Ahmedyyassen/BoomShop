@@ -4,12 +4,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "./useAuth";
 const useLogin = () => {
     const queryClient = useQueryClient()
       
     const location = useLocation();
     const redirectPath = location.state?.path || "/";
-
+    const { authUser } = useAuth()
     const api = useApiClient();
     const navigate = useNavigate();
     const [loginForm, setLoginForm] = useState<LOGINFORM>({
@@ -22,7 +23,11 @@ const useLogin = () => {
       onSuccess: () => {
         toast.success("User Login successfully", { position: "top-center" });
         queryClient.invalidateQueries({queryKey: ["authUser"]})
-        navigate(redirectPath, { replace: true });
+      },
+      onSettled:()=>{
+        if (authUser) {
+          navigate(redirectPath, { replace: true });
+        }
       },
       onError: (error) => {
         toast.error(error.message, {
