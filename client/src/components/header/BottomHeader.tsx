@@ -3,6 +3,8 @@ import { FaUserPlus } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { PiSignInBold } from "react-icons/pi";
+import { IoCloseCircleOutline } from "react-icons/io5";
+
 import {
   Link,
   NavLink,
@@ -12,6 +14,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../hooks/useApp";
 import { getCategoryList } from "../../store/apiCalls/categoryApiCalls";
 import useAuth from "@/hooks/useAuth";
+
 
 const navLinks = [
   { title: "Home", path: "/" },
@@ -27,6 +30,7 @@ const BottomHeader = () => {
   const location = useLocation();
   const { data, isLoading } = useAppSelector((state) => state.cat);
   const dispatch = useAppDispatch();
+  const [closeMenu, setCloseMenu] = useState(true);
 
   useEffect(() => {
     dispatch(getCategoryList());
@@ -43,14 +47,17 @@ const BottomHeader = () => {
   };
   return (
     <div className="bg-main-main z-10">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container w-[90%] mx-auto flex justify-between items-center">
+        <IoMdMenu
+          onClick={() => setCloseMenu(false)}
+          className="xl:hidden my-2 text-white text-2xl"
+        />
         <nav className="flex items-center gap-12">
-          <div className="w-[220px] h-full relative ">
+          <div className="w-[220px] h-full relative hidden lg:block ">
             <a
               onClick={() => setMenu(!menu)}
-              className="flex items-center w-full h-full text-lg  justify-between py-4 cursor-pointer text-white"
+              className="flex items-center w-full h-full text-base justify-between py-4 cursor-pointer text-white"
             >
-              <IoMdMenu />
               <p className="font-semibold">Browse Category</p>
               <MdOutlineArrowDropDown />
             </a>
@@ -75,21 +82,43 @@ const BottomHeader = () => {
             </article>
           </div>
 
-          <article className="flex items-center gap-8 text-lg text-white">
-            {navLinks.map((item) => (
-              <NavLink
-                key={item.title}
-                style={navigateStyle}
-                className="h-full py-4 px-6"
-                to={item.path}
-              >
-                {item.title}
-              </NavLink>
-            ))}
+          <article
+            className={`fixed h-screen top-0 transition-all ${
+              closeMenu ? "left-[-100%]" : "left-0"
+            } lg:relative lg:h-full w-full md:w-1/2 text-lg text-center text-white bg-main-main`}
+          >
+            <span
+              onClick={() => setCloseMenu(true)}
+              className="block xl:hidden absolute top-4 right-8"
+            >
+              <IoCloseCircleOutline
+                size={40}
+                className="hover:text-red-500 transition-colors cursor-pointer"
+              />
+            </span>
+            <div className="flex flex-col lg:flex-row items-center gap-2 mt-16 lg:mt-0">
+              {navLinks.map((item) => (
+                <NavLink
+                  key={item.title}
+                  style={navigateStyle}
+                  className="h-full py-4 px-6 hover:bg-[#0079ca] transition-colors w-full"
+                  to={item.path}
+                >
+                  {item.title}
+                </NavLink>
+              ))}
+            </div>
           </article>
+          {!closeMenu && (
+            <div
+              onClick={() => setCloseMenu(true)}
+              className="fixed bg-gray-600 opacity-40 h-screen w-1/2 right-0 top-0 hidden md:block"
+            />
+          )}
         </nav>
+
         {!authUser ? (
-          <div className="flex gap-6 text-3xl text-white">
+          <div className="flex gap-2 xl:gap-6 text-3xl text-white">
             <Link title="Login" to={"/login"}>
               <PiSignInBold />
             </Link>

@@ -11,29 +11,33 @@ const TopHeader = () => {
 
   return (
     <div>
-        <div className="container mx-auto flex items-center justify-between p-1">
-          <Link to={"/"}><img src="icon.png" className="size-20" /></Link>
-         
-            <SearchBox />
+      <div className="container max-w-[90%] mx-auto flex items-center justify-between py-2 flex-wrap">
+        <Link to={"/"} className="">
+          <img src="icon.png" className="size-10 xl:size-12 2xl:size-16" />
+        </Link>
 
-          <div>
-            <div className="flex items-center gap-8">
-                <ModeToggle />
+        <div className="order-2 md:order-1 mt-2 md:mt-0 ">
+          <SearchBox />
+        </div>
 
-                <Link to={"/favorite"} className="relative cursor-pointer">
-                <FaRegHeart className="text-3xl" />
-                <span className="icon">{favItems.length || 0}</span>
-                </Link>
+        <div className="order-1 md:order-2">
+          <div className="flex items-center gap-4 2xl:gap-8">
+            <ModeToggle />
 
-                <Link to={"/cart"} className="relative cursor-pointer">
-                <TiShoppingCart className="text-3xl" />
-                <span className="icon">{cartItems.length || 0}</span>
-                </Link>
-            </div>
+            <Link to={"/favorite"} className="relative cursor-pointer">
+              <FaRegHeart className="text-3xl" />
+              <span className="icon">{favItems.length || 0}</span>
+            </Link>
+
+            <Link to={"/cart"} className="relative cursor-pointer">
+              <TiShoppingCart className="text-3xl" />
+              <span className="icon">{cartItems.length || 0}</span>
+            </Link>
           </div>
         </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default TopHeader

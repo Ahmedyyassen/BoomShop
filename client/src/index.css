@@ -35,7 +35,7 @@ img{
     @apply absolute -top-1 -right-2 w-5 h-5 leading-5 text-center text-xs rounded-full bg-main-main text-white;
   }
   .btn{
-    @apply py-2 px-5 capitalize rounded-4xl cursor-pointer bg-main-main text-white flex gap-3 items-center transition-all hover:scale-[1.1] max-w-fit border border-main-main
+    @apply py-0.5 px-3 md:py-2 md:px-5 text-xs md:text-base capitalize rounded-4xl cursor-pointer bg-main-main text-white flex gap-3 items-center transition-all hover:scale-[1.1] max-w-fit border border-main-main
   }
   .icons{
     @apply w-10 h-10 rounded-full flex items-center justify-center cursor-pointer bg-main-bg text-main-main border border-main-main hover:bg-main-main hover:text-white transition-all
@@ -46,7 +46,7 @@ img{
 }
 .swiper-pagination-bullet-active{
   background-color: var(--color-main-main);
-  width: 32px;
+  width: 24px;
   border-radius: 14px;
 }
 

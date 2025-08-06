@@ -22,27 +22,38 @@ const SlideProduct = () => {
 
     
   return (
-    <section className="container mx-auto my-32">
-        <article className="border-b-4 w-fit border-main-main py-4 mb-3">
-            <h2 className="text-3xl text-main-main font-bold">Lorem ipsum dolor sit amet.</h2>
-            <p className="text-main-p">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </article>
+    <section className="container mx-auto my-10 md:my-32">
+      <article className="border-b-4 w-fit border-main-main py-4 mx-4 mb-3 ">
+        <h2 className="text-xl md:text-3xl text-main-main font-bold">
+          All Products
+        </h2>
+        <p className="text-sm text-main-p">Discover your favorite products.</p>
+      </article>
 
-        <div className="flex flex-wrap gap-4 justify-center">
-          {products.map((item, index)=>{
-            if (products.length === index+1) {              
-              return  <div ref={lastElemRef} key={item.id+index} ><Product item={item} /></div>;
-            }else{
-              return <div key={item.id+index} ><Product item={item} /></div>;
-            }
-          })}
-          {isLoading && Array(10).fill(0).map((_,i)=>(
-                <ProductSkeleton key={i} />
-          ))}
-          {error && "Error"}
-        </div>
+      <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
+        {products.map((item, index) => {
+          if (products.length === index + 1) {
+            return (
+              <div ref={lastElemRef} key={item.id + index}>
+                <Product item={item} />
+              </div>
+            );
+          } else {
+            return (
+              <div key={item.id + index}>
+                <Product item={item} />
+              </div>
+            );
+          }
+        })}
+        {isLoading &&
+          Array(10)
+            .fill(0)
+            .map((_, i) => <ProductSkeleton key={i} />)}
+        {error && "Error"}
+      </div>
     </section>
-  )
+  );
 }
 
 export default SlideProduct

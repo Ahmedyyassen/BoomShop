@@ -52,20 +52,20 @@ const Product = ({item}:{item:pro}) => {
   }
   
   return (
-    <article style={{borderColor:isAdded()? "#0090f0":""}}  className="relative bg-[#f4f4f4] dark:bg-black w-[290px] py-6 px-4 border shadow-lg group overflow-hidden border-main-border dark:border-gray-600 hover:border-main-main transition-colors rounded-lg">
+    <article style={{borderColor:isAdded()? "#0090f0":""}}  className="relative my-2 bg-[#f4f4f4] dark:bg-black w-[180px] md:w-[240px] lg:w-[290px] py-6 px-2 border shadow-lg group overflow-hidden border-main-border dark:border-gray-600 hover:border-main-main transition-colors rounded-lg">
       <Link   to={`/${item.id}`} >
       <span style={{top:isAdded()? "10px":"-15px"}} className="absolute left-1/2 -translate-x-1/2 text-sm transition-all flex items-center gap-1 font-semibold"><FaCheck className="text-green-400"/>in cart</span>
-      <div className="h-[200px] w-auto px-6 flex items-center justify-center mb-8">
+      <div className="h-[160px] md:h-[200px] w-auto px-6 flex items-center justify-center mb-8">
         <img src={item.images[0]} alt={item.title} className="h-[200px] object-center" />
       </div>
-      <p className="mb-2 text-ellipsis text-lg font-semibold text-main-p line-clamp-1 textcolor">{item.title}</p>
-         <p className="flex my-4 gap-1 text-[#f8d941] text-xl">
+      <p className="mb-2 text-ellipsis text-sm md:text-lg font-semibold text-main-p line-clamp-1 ">{item.title}</p>
+         <p className="flex my-4 gap-1 text-[#f8d941] text-base md:text-xl">
           {Array(Math.ceil(item.rating)).fill("").map((_,i)=>(
             <FaStar key={i} />
           ))}
           <FaRegStarHalfStroke />
          </p>
-         <p className="text-xl font-bold text-main-main">$ {item.price}</p>
+         <p className="text-sm md:text-xl font-bold text-main-main">$ {item.price}</p>
       </Link>
 
          <article className="absolute top-1/2 -translate-y-1/2 -right-12 group-hover:right-2 delay-100 transition-all flex flex-col gap-2">
