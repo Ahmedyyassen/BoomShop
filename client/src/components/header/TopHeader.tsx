@@ -17,7 +17,7 @@ const TopHeader = () => {
           <img src="icon.png" className="" />
         </Link>
 
-        <div className="order-2 md:order-1 mt-2 md:mt-0 w-full md:w-[500px]">
+        <div className="order-2 md:order-1 mt-2 md:mt-0 w-full md:w-[500px] z-20">
           <SearchBox />
         </div>
 
