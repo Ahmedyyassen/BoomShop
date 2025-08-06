@@ -13,8 +13,8 @@ const TopHeader = () => {
     <div>
       <div className="container mx-auto px-4 flex items-center justify-between py-2 flex-wrap">
 
-        <Link to={"/"} >
-          <img src="icon.png" className="w-10 h-10 xl:size-12 2xl:size-16" />
+        <Link to={"/"} className="w-8" >
+          <img src="icon.png" className="w-8 h-10 xl:size-12 2xl:size-16" />
         </Link>
 
         <div className="order-2 md:order-1 mt-2 md:mt-0 w-full">
