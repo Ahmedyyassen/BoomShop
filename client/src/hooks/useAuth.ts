@@ -10,7 +10,7 @@ const useAuth = () => {
         const res = await apiUser.syncUser(api);
         return res.data.user;
       },
-      retry: false
+      retry: false, // <--- very important!
     });
   return { authUser:data, isLoading, error }
 }

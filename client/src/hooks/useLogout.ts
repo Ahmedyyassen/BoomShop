@@ -11,8 +11,8 @@ const useLogout = () => {
         mutationFn: async() => await authApi.logout(api),
         onSuccess: ()=>{
             toast.success("Logout success", { position: "top-center" });
-            queryClient.clear();
-            navigate("/");
+            queryClient.setQueryData(["authUser"], null); // mark authUser as null
+            navigate("/login"); // force to login page
         },
         onError: (err)=>{
             toast.error(err.message, { position: "top-center" });
