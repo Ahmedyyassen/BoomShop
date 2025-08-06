@@ -17,7 +17,7 @@ const SettingsSidebar = () => {
       <nav className="space-y-2 mt-8">
         <NavLink
           to={"/profile/account"}
-            className={({ isActive }) =>
+          className={({ isActive }) =>
             `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
               isActive
                 ? "bg-main-main text-main-bg"
@@ -52,7 +52,9 @@ const SettingsSidebar = () => {
           <LogOut className="w-5 h-5" />
           <span className="font-medium">
             {isPending ? (
-              <FiLoader className="animate-spin text-3xl" />
+              <div className="flex items-center justify-center w-full">
+                <FiLoader className="animate-spin text-3xl" />
+              </div>
             ) : (
               "Logout"
             )}
@@ -62,7 +64,10 @@ const SettingsSidebar = () => {
       {/* Profile Section */}
       <div className="flex items-center justify-start gap-4 mb-4 border border-gray-300 bg-gray-100 px-4 py-1 rounded-full">
         <Avatar className="size-16 border-2 border-gray-400">
-          <AvatarImage src={authUser?.profilePicture} className="object-cover" />
+          <AvatarImage
+            src={authUser?.profilePicture}
+            className="object-cover"
+          />
           <AvatarFallback className="text-lg font-semibold">JD</AvatarFallback>
         </Avatar>
         <div className=" text-gray-600 font-semibold leading-4 text-sm">
