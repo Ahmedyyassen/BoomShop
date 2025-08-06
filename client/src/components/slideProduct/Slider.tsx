@@ -29,10 +29,24 @@ const Slider = memo(function Slider ({category}:Props){
     </article>
 
     <div className="relative ">
-        <Swiper autoplay={{
+        <Swiper 
+        className=" bg-red-500"
+        autoplay={{
           delay: 5000,
           disableOnInteraction: false}}
-         slidesPerView={5} spaceBetween={20} loop={true} navigation={true} modules={[Navigation,Autoplay]}>
+         slidesPerView={5}
+         breakpoints={
+            { 1000: {
+                slidesPerView: 3,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            640: {
+                slidesPerView: 1,
+            },
+         }}
+        spaceBetween={20} loop={true} navigation={true} modules={[Navigation,Autoplay]}>
         { products.map((item)=>(
             <SwiperSlide><Product item={item} key={item.id} /></SwiperSlide>
         ))}
