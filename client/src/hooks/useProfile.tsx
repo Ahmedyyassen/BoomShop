@@ -1,12 +1,12 @@
 import useApiClient, { apiUser } from "@/constants/env";
-import { AuthContext } from "@/context/authContext"
 import { UPDATEUSER } from "@/types/user";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ChangeEvent, useContext, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import toast from "react-hot-toast";
+import useAuth from "./useAuth";
 
 const useProfile = () => {
-    const { authUser } = useContext(AuthContext);
+    const { authUser } = useAuth();
     const api = useApiClient();
     const queryClient = useQueryClient();
 

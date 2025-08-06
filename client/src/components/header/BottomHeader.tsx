@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { MdOutlineArrowDropDown } from "react-icons/md";
@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/useApp";
 import { getCategoryList } from "../../store/apiCalls/categoryApiCalls";
-import { AuthContext } from "@/context/authContext";
+import useAuth from "@/hooks/useAuth";
 
 const navLinks = [
   { title: "Home", path: "/" },
@@ -22,7 +22,7 @@ const navLinks = [
 ];
 
 const BottomHeader = () => {
-  const { authUser } = useContext(AuthContext);
+  const { authUser } = useAuth();
   const [menu, setMenu] = useState(false);
   const location = useLocation();
   const { data, isLoading } = useAppSelector((state) => state.cat);
