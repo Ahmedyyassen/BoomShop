@@ -14,13 +14,10 @@ import ProfileLayout from "./components/ProfileLayout";
 import AccountPage from "./pages/Profile/AccountPage";
 import PasswordPage from "./pages/Profile/PasswordPage";
 import useAuth from "./hooks/useAuth";
-import Spinner from "./components/Spinner";
 
 function App() {
-  const {authUser, isLoading} = useAuth();
-    if (isLoading) {
-      return <Spinner />
-    }
+  const {authUser, isLoading, error} = useAuth();
+    if (isLoading || error) return;
     const router = createBrowserRouter(
       createRoutesFromElements(
         <>
