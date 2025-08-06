@@ -11,12 +11,13 @@ const TopHeader = () => {
 
   return (
     <div>
-      <div className="container max-w-[90%] mx-auto flex items-center justify-between py-2 flex-wrap">
-        <Link to={"/"} className="">
-          <img src="icon.png" className="size-10 xl:size-12 2xl:size-16" />
+      <div className="container mx-auto px-4 flex items-center justify-between py-2 flex-wrap">
+
+        <Link to={"/"} >
+          <img src="icon.png" className="w-10 h-10 xl:size-12 2xl:size-16" />
         </Link>
 
-        <div className="order-2 md:order-1 mt-2 md:mt-0 ">
+        <div className="order-2 md:order-1 mt-2 md:mt-0 w-full">
           <SearchBox />
         </div>
 
@@ -35,6 +36,7 @@ const TopHeader = () => {
             </Link>
           </div>
         </div>
+
       </div>
     </div>
   );

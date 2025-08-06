@@ -9,7 +9,7 @@ const HeroSlider = () => {
   return (
     <>
       <Swiper
-        className="w-[90%] mx-auto h-[250px] md:h-full rounded-2xl"
+        className="container mx-auto h-[250px] md:h-full rounded-2xl"
         pagination={true}
         loop={true}
         autoplay={{ delay: 2500, disableOnInteraction: false }}

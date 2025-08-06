@@ -47,7 +47,7 @@ const BottomHeader = () => {
   };
   return (
     <div className="bg-main-main z-10">
-      <div className="container w-[90%] mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center py-1 px-3">
         <IoMdMenu
           onClick={() => setCloseMenu((prev)=> !prev)}
           className="xl:hidden my-2 text-white text-2xl"
