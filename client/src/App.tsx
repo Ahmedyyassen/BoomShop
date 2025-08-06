@@ -17,7 +17,7 @@ import useAuth from "./hooks/useAuth";
 
 function App() {
   const {authUser, isLoading, error} = useAuth();
-    if (isLoading || error) return;
+    if (isLoading || error) return null;
     const router = createBrowserRouter(
       createRoutesFromElements(
         <>
