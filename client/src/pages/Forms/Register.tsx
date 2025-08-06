@@ -33,7 +33,7 @@ const Register = () => {
                   placeholder="First Name"
                   value={signupForm.firstName}
                   onChange={handleChangeInput}
-                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
+                  className="w-full border h-10 md:h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
                 />
                 <input
                   type="text"
@@ -42,7 +42,7 @@ const Register = () => {
                   placeholder="Last Name"
                   value={signupForm.lastName}
                   onChange={handleChangeInput}
-                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
+                  className="w-full border h-10 md:h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
                 />
               </div>
 
@@ -53,7 +53,7 @@ const Register = () => {
                 placeholder="Email"
                 value={signupForm.email}
                 onChange={handleChangeInput}
-                className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
+                className="w-full border h-10 md:h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
               />
               <div className="relative">
                 <input
@@ -63,7 +63,7 @@ const Register = () => {
                   placeholder="Password"
                   value={signupForm.password}
                   onChange={handleChangeInput}
-                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
+                  className="w-full border h-10 md:h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
                 />
                 {showPassword.password ? (
                   <FaEye
@@ -89,7 +89,7 @@ const Register = () => {
                   placeholder="Confirm Password"
                   value={signupForm.confirmPassword}
                   onChange={handleChangeInput}
-                  className="w-full border h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
+                  className="w-full border h-10 md:h-12 lg:h-16 text-sm lg:text-lg border-main-border py-2 px-2 lg:px-4 rounded-full"
                   onKeyDown={(e) => e.key === "Enter" && saveData()}
                 />
                   {showPassword.cPassword ? (
@@ -126,7 +126,7 @@ const Register = () => {
                 disabled={isLoading}
                 type="button"
                 onClick={saveData}
-                className="w-full flex justify-center bg-main-main text-white border-2 rounded-full border-main-border py-4 text-xl cursor-pointer font-bold transition-all hover:bg-transparent hover:text-main-main"
+                className="w-full flex justify-center bg-main-main text-white border-2 rounded-full border-main-border py-2 md:py-4 text-xl cursor-pointer font-bold transition-all hover:bg-transparent hover:text-main-main"
               >
                 {isLoading ? (
                   <FiLoader className="animate-spin text-3xl" />

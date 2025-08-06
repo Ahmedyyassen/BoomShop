@@ -95,17 +95,14 @@ const handleMouseLeave = () => setIsZoomed(false);
     <PageTransition>
       <>
     { !isLoading ?  
-    <div className="container pt-60 mx-auto py-12 flex justify-between items-center gap-10">
-        <div className="w-[40%]">
-          {/* <div onMouseMove={()=> {}} className="flex items-center justify-center w-full relative">
-            <img src={ mainImg || product?.images[0]} alt={product?.title} />            
-          </div> */}
+    <div className="container pt-45 md:pt-60 mx-auto flex justify-between items-center flex-col md:flex-row md:gap-10">
+        <div className="w-[80%] md:w-[40%]">
               <div
                 ref={imageRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                className="relative w-full h-[600px] overflow-hidden rounded-md cursor-pointer "
+                className="relative w-full h-[400px] md:h-[600px] overflow-hidden rounded-md cursor-pointer "
               >
                 <img
                   src={mainImg || product?.images[0]}
@@ -119,16 +116,16 @@ const handleMouseLeave = () => setIsZoomed(false);
                 />
               </div>
 
-          <div className="flex justify-center w-2/3 mt-8 mx-auto gap-8 items-center">
+          <div className="flex justify-center w-full md:w-2/3 mt-8 mx-auto gap-2 md:gap-8 items-center">
             { product?.images && product.images.length > 1 
             && product?.images.map((img)=>(
-             <div className="w-32" key={img} > <img src={img} onClick={()=> setMainImg(img)}  className="h-32 w-auto object-cover cursor-pointer" /></div>
+             <div className="w-32" key={img} > <img src={img} onClick={()=> setMainImg(img)}  className="h-20 md:h-32 w-auto object-cover cursor-pointer" /></div>
             ))}
           </div>
         </div>
 
-        <article className="w-[58%]">
-            <h1 className="mb-8 text-main-main text-4xl font-extrabold">{product?.title}</h1>
+        <article className="w-[90%] md:w-[58%] mt-16 md:mt-0">
+            <h1 className="mb-0 md:mb-8 text-main-main text-[28px] md:text-4xl font-extrabold">{product?.title}</h1>
             <span className="flex items-center gap-2 my-4" >
               {Array(4).fill(0).map((_,i)=>(
                <FaStar key={i} className="fill-[#f8d941] text-xl" />

@@ -5,7 +5,7 @@ import SlideProduct from "../components/slideProduct/SlideProduct"
 const Home = () => {
   return (
     <PageTransition>
-      <div className="pt-50 md:pt-40">
+      <div className="pt-50 md:pt-50">
         <HeroSlider />
 
         <SlideProduct />

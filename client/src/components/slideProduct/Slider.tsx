@@ -22,31 +22,30 @@ const Slider = memo(function Slider ({category}:Props){
     },[category]);
     
   return (
-    <section className="container mx-auto my-32">
-    <article className="border-b-4 w-fit border-main-main py-4 mb-3">
-        <h2 className="text-3xl text-main-main font-bold capitalize">{ category &&category.replace("-"," ")}</h2>
-        <p className="text-main-p">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <section className="container mx-auto my-16 md:my-32">
+    <article className="border-b-4 w-fit border-main-main py-4 px-4 mb-3">
+        <h2 className="text-xl md:text-3xl text-main-main font-bold capitalize">{ category &&category.replace("-"," ")}</h2>
+        <p className="text-main-p">There are some products about {category &&category.replace("-"," ")}</p>
     </article>
 
-    <div className="relative ">
+    <div className="relative px-2">
         <Swiper 
-        className=" bg-red-500"
+        className=""
         autoplay={{
           delay: 5000,
           disableOnInteraction: false}}
-         slidesPerView={5}
          breakpoints={
             { 1000: {
-                slidesPerView: 3,
+                slidesPerView: 5,
             },
             768: {
+                slidesPerView: 3,
+            },
+            350: {
                 slidesPerView: 2,
             },
-            640: {
-                slidesPerView: 1,
-            },
          }}
-        spaceBetween={20} loop={true} navigation={true} modules={[Navigation,Autoplay]}>
+        spaceBetween={10} loop={true} navigation={true} modules={[Navigation,Autoplay]}>
         { products.map((item)=>(
             <SwiperSlide><Product item={item} key={item.id} /></SwiperSlide>
         ))}
