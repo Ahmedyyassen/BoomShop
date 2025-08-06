@@ -10,15 +10,17 @@ import Favorite from "./pages/Favorite";
 import CategoryPage from "./pages/CategoryPage";
 import SearchResult from "./pages/SearchResult";
 import RequiredAuth from "./components/RequiredAuth";
-import { useContext } from "react";
-import { AuthContext } from "./context/authContext";
 import ProfileLayout from "./components/ProfileLayout";
 import AccountPage from "./pages/Profile/AccountPage";
 import PasswordPage from "./pages/Profile/PasswordPage";
+import useAuth from "./hooks/useAuth";
+import Spinner from "./components/Spinner";
 
 function App() {
-  const { authUser } = useContext(AuthContext);
-  
+  const {authUser, isLoading} = useAuth();
+    if (isLoading) {
+      return <Spinner />
+    }
     const router = createBrowserRouter(
       createRoutesFromElements(
         <>
