@@ -12,7 +12,7 @@ const TopHeader = () => {
   return (
     <div>
         <div className="container mx-auto flex items-center justify-between p-1">
-          <Link to={"/"}><img src="./src/img/icon.png" className="size-20" /></Link>
+          <Link to={"/"}><img src="icon.png" className="size-20" /></Link>
          
             <SearchBox />
 

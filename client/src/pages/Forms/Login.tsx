@@ -20,7 +20,7 @@ const Login = () => {
           {/* LOGO */}
           <div className="border-b border-b-main-border py-3 lg:py-6 mb-5 flex justify-center">
             <div className="w-36">
-              <Link to={"/"} ><img src="./src/img/icon.png" className="" /></Link>
+              <Link to={"/"} ><img src="icon.png" className="" /></Link>
             </div>
           </div>
 

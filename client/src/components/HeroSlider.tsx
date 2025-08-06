@@ -2,8 +2,8 @@ import {Swiper, SwiperSlide} from "swiper/react"
 import { Autoplay, Pagination } from "swiper/modules"
 import { Link } from "react-router-dom"
 
-const dataSlider = ["/src/img/banner_Hero1.jpg",
-  "/src/img/banner_Hero2.jpg","/src/img/banner_Hero3.jpg"
+const dataSlider = ["banner_Hero1.jpg",
+  "banner_Hero2.jpg","banner_Hero3.jpg"
 ]
 const HeroSlider = () => {
   return (
