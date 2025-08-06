@@ -14,5 +14,5 @@ export const CATEGORY_LIST = `${PRODUCTS_ITEM}/category-list`;
 
 export const PROCUCT_CATEGORY = `${PRODUCTS_ITEM}/category`;
 
-export const SEARCH_ITEM = `${PRODUCTS_ITEM}/search`
+export const SEARCH_ITEM = `${PRODUCTS_ITEM}/search`;
 
